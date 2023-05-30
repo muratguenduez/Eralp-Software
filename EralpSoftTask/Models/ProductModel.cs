@@ -1,13 +1,15 @@
-﻿namespace EralpSoftTask.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EralpSoftTask.Models
 {
     public class ProductModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public bool InStock { get; set; }
-        public int UserId { get; set; }
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? description { get; set; }
+        public decimal price { get; set; }
+        public bool instock { get; set; }
+        public int userid { get; set; }
         public UserModel User { get; set; }
     }
 }

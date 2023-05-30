@@ -1,7 +1,8 @@
 ﻿using EralpSoftTask.Data;
 using EralpSoftTask.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace EralpSoftTask.Controllers
 {
@@ -9,31 +10,82 @@ namespace EralpSoftTask.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //private readonly DataContext _context;
+        private readonly SqlDataContext _dbContext;
+        public UserController(SqlDataContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        //public UserController(DataContext context)
+        [HttpGet("users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var result = await _dbContext.tblUser.ToListAsync();
+            if (result == null)
+                return null;
+
+            return Ok(result);
+        }
+
+        //[HttpGet("{id}/products")]
+        //public IActionResult GetUserProducts(int id)
         //{
-        //    _context = context;
+        //    var user = _dbContext.tblUser.Include(u => u.Products).FirstOrDefault(u => u.id == id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var products = user.Products.ToList();
+        //    return Ok(products);
         //}
 
-        //// your controller actions here
-
-        [HttpGet]
-        [Route("user")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<UserModel>))]
-        public IActionResult getUser(UserModel model)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var response = new { status = "success", message = "Object created" };
+            var result = await _dbContext.tblUser.FindAsync(id);
+            if (result == null)
+                return null;
 
-                // Serialize the response object into JSON
-                var json = JsonConvert.SerializeObject(response);
+            return Ok(result);
+        }
 
-                // Return the serialized JSON with a 200 OK status code
-                return Ok(json);
-            }
-            return Ok();
+        [HttpPost]
+        public async Task<IActionResult> AddUsers(UserModel request)
+        {
+            _dbContext.tblUser.Add(request);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.tblUser.ToListAsync());
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUsers(int id)
+        {
+            var result = await _dbContext.tblUser.FindAsync(id);
+            if (result == null)
+                return null;
+
+            _dbContext.tblUser.Remove(result);
+            await _dbContext.SaveChangesAsync();
+            return Ok(await _dbContext.tblUser.ToListAsync());
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatelUser(int id, UserModel request)
+        {
+            var result = await _dbContext.tblUser.FindAsync(id);
+            if (result == null)
+                return null;
+
+            result.username = request.username;
+            result.password = request.password;
+            result.email = request.email;            
+            result.firstname = request.firstname;
+            result.lastname = request.lastname;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(await _dbContext.tblUser.ToListAsync());
         }
 
     }

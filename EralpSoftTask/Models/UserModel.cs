@@ -2,12 +2,20 @@
 {
     public class UserModel
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public List<ProductModel> Products { get; set; }
+        public int id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+    }
+
+    public class ViewModel
+    {        
+        public int id { get; set; }
+        public string username { get; set; }
+        public string email { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
     }
 }
