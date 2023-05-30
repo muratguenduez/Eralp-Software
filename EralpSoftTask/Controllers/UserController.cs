@@ -26,6 +26,19 @@ namespace EralpSoftTask.Controllers
             return Ok(result);
         }
 
+        //[HttpGet("{id}/products")]
+        //public IActionResult GetUserProducts(int id)
+        //{
+        //    var user = _dbContext.tblUser.Include(u => u.Products).FirstOrDefault(u => u.id == id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var products = user.Products.ToList();
+        //    return Ok(products);
+        //}
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {

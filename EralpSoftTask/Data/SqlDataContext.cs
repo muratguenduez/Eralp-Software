@@ -15,11 +15,11 @@ namespace EralpSoftTask.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductModel>().HasKey(x => x.id);
-            modelBuilder.Entity<ProductModel>().Property(b => b.price).HasColumnType("decimal(10,2");
-
-            modelBuilder.Entity<UserModel>().HasKey(x => x.id);
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ProductModel>()
+            .HasOne(p => p.User)
+            .WithMany()
+            .HasForeignKey(p => p.userid);
         }
 
     }

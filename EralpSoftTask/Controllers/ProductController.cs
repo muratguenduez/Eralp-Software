@@ -20,18 +20,57 @@ namespace EralpSoftTask.Controllers
         [HttpGet("products")]
         public async Task<IActionResult> GetProducts()
         {
-            var result = await _dbContext.tblProduct.ToListAsync();
+            var result = await _dbContext.tblProduct.Include(p => p.User).ToListAsync();
+
             if (result == null)
                 return null;
 
-            return Ok(result);
+            //var products = from p in _dbContext.tblProduct
+            //               join u in _dbContext.tblUser on p.userid equals u.id
+            //               select new ProductModel
+            //               {
+            //                   id = p.id,
+            //                   name = p.name,
+            //                   description = p.description,
+            //                   price = p.price,
+            //                   instock = p.instock,
+            //                   userid = p.userid,
+            //                   user = new UserModel
+            //                   {
+            //                       id = u.id,
+            //                       username = u.username,
+            //                       firstname = u.firstname,
+            //                       lastname = u.lastname,
+            //                       email = u.email
+            //                   }
+            //               };
+
+            //return Ok(products);
+
+            var modifiedResult = result.Select(r => new            
+            {
+                r.id,
+                r.name,
+                r.description,
+                r.price,
+                r.instock,
+                r.userid,
+                User = new
+                {
+                    r.User.firstname,
+                    r.User.lastname,
+                    r.User.username
+                }
+            });
+
+            return Ok(modifiedResult);            
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
             var result = await _dbContext.tblProduct.FindAsync(id);
-            if (result == null) 
+            if (result == null)
                 return null;
 
             return Ok(result);
@@ -50,7 +89,7 @@ namespace EralpSoftTask.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var result = await _dbContext.tblProduct.FindAsync(id);
-            if (result == null) 
+            if (result == null)
                 return null;
 
             _dbContext.tblProduct.Remove(result);
@@ -62,8 +101,8 @@ namespace EralpSoftTask.Controllers
         public async Task<IActionResult> UpdateProduct(int id, ProductModel request)
         {
             var result = await _dbContext.tblProduct.FindAsync(id);
-            if (result == null)  
-                return null; 
+            if (result == null)
+                return null;
 
             result.name = request.name;
             result.description = request.description;
@@ -76,6 +115,6 @@ namespace EralpSoftTask.Controllers
             return Ok(await _dbContext.tblProduct.ToListAsync());
         }
 
-        
+
     }
 }

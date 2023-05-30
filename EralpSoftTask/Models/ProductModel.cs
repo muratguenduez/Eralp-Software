@@ -10,5 +10,6 @@ namespace EralpSoftTask.Models
         public decimal price { get; set; }
         public bool instock { get; set; }
         public int userid { get; set; }
+        public UserModel User { get; set; }
     }
 }

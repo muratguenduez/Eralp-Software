@@ -14,6 +14,7 @@ D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\EralpSoftTa
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\EralpSoftTask.pdb
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\Azure.Core.dll
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\Azure.Identity.dll
+D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\BCrypt.Net-Next.dll
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\Humanizer.dll
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\MessagePack.dll
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -314,4 +315,3 @@ D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\obj\Debug\net6.0\refint\Eral
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\obj\Debug\net6.0\EralpSoftTask.pdb
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\obj\Debug\net6.0\EralpSoftTask.genruntimeconfig.cache
 D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\obj\Debug\net6.0\ref\EralpSoftTask.dll
-D:\Work\Eralp-Software\Eralp-Software\EralpSoftTask\bin\Debug\net6.0\BCrypt.Net-Next.dll
