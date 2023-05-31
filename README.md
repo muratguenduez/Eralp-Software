@@ -1,6 +1,7 @@
 # Eralp-Software
  Back-end .net core 7 solution for a task
 
+MSSQL
 For DB tables,
 CREATE TABLE [dbo].[tblUser] (
     [id]        INT           IDENTITY (1, 1) NOT NULL,
